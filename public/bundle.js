@@ -112,7 +112,7 @@
 	$(document).foundation();
 
 	// App css
-	__webpack_require__(167);
+	__webpack_require__(169);
 
 	_reactDom2.default.render(_react2.default.createElement(_TodoApp2.default, null), document.getElementById('app'));
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)))
@@ -19807,20 +19807,39 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _TodoList = __webpack_require__(167);
+
+	var _TodoList2 = _interopRequireDefault(_TodoList);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var TodoApp = _react2.default.createClass({
 	  displayName: 'TodoApp',
 
+	  getInitialState: function getInitialState() {
+	    return {
+	      todos: [{
+	        id: 1,
+	        text: 'Walk the dog'
+	      }, {
+	        id: 2,
+	        text: 'Clean the yard'
+	      }, {
+	        id: 3,
+	        text: 'Go grocery shopping'
+	      }, {
+	        id: 4,
+	        text: 'Go to the movies'
+	      }]
+	    };
+	  },
 	  render: function render() {
+	    var todos = this.state.todos;
+
 	    return _react2.default.createElement(
 	      'div',
 	      null,
-	      _react2.default.createElement(
-	        'h1',
-	        null,
-	        'TodoApp.jsx'
-	      )
+	      _react2.default.createElement(_TodoList2.default, { todos: todos })
 	    );
 	  }
 	});
@@ -19831,13 +19850,88 @@
 /* 167 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	var _react = __webpack_require__(8);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _Todo = __webpack_require__(168);
+
+	var _Todo2 = _interopRequireDefault(_Todo);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var TodoList = _react2.default.createClass({
+	  displayName: 'TodoList',
+
+	  render: function render() {
+	    var todos = this.props.todos;
+
+	    var renderTodos = function renderTodos() {
+	      return todos.map(function (todo) {
+	        return _react2.default.createElement(_Todo2.default, _extends({ key: todo.id }, todo));
+	      });
+	    };
+	    return _react2.default.createElement(
+	      'div',
+	      null,
+	      renderTodos()
+	    );
+	  }
+	});
+
+	module.exports = TodoList;
+
+/***/ },
+/* 168 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _react = __webpack_require__(8);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Todo = _react2.default.createClass({
+	  displayName: 'Todo',
+
+	  render: function render() {
+	    var _props = this.props;
+	    var id = _props.id;
+	    var text = _props.text;
+
+	    return _react2.default.createElement(
+	      'div',
+	      null,
+	      _react2.default.createElement(
+	        'p',
+	        null,
+	        id,
+	        '. ',
+	        text
+	      )
+	    );
+	  }
+	});
+
+	module.exports = Todo;
+
+/***/ },
+/* 169 */
+/***/ function(module, exports, __webpack_require__) {
+
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(168);
+	var content = __webpack_require__(170);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(170)(content, {});
+	var update = __webpack_require__(172)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -19854,10 +19948,10 @@
 	}
 
 /***/ },
-/* 168 */
+/* 170 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(169)();
+	exports = module.exports = __webpack_require__(171)();
 	// imports
 
 
@@ -19868,7 +19962,7 @@
 
 
 /***/ },
-/* 169 */
+/* 171 */
 /***/ function(module, exports) {
 
 	/*
@@ -19924,7 +20018,7 @@
 
 
 /***/ },
-/* 170 */
+/* 172 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
