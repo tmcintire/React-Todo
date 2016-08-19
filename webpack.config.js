@@ -27,6 +27,10 @@ module.exports = {
 	// which extensions to get, a javascript object
 	resolve: {
 		root: __dirname,
+		modulesDirectories: [
+			'node_modules',
+			'./app/components/'
+		],
 		alias: {
 			applicationStyles: 'app/styles/app.scss'
 		},
