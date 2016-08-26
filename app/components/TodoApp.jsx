@@ -1,34 +1,37 @@
-import React from 'react';
-import TodoList from 'TodoList';
+var React = require('react');
+var TodoList = require('TodoList');
+import AddTodo from 'Addtodo';
 
 var TodoApp = React.createClass({
-  getInitialState: function() {
+  getInitialState: function () {
     return {
       todos: [
         {
           id: 1,
           text: 'Walk the dog'
-        },
-        {
+        }, {
           id: 2,
           text: 'Clean the yard'
-        },
-        {
+        }, {
           id: 3,
-          text: 'Go grocery shopping'
-        },
-        {
+          text: 'Leave mail on porch'
+        }, {
           id: 4,
-          text: 'Go to the movies'
-        },
+          text: 'Play video games'
+        }
       ]
-    }
+    };
   },
-  render: function() {
+  handleAddTodo: function(text) {
+    alert('new todo: ' + text);
+  },
+  render: function () {
     var {todos} = this.state;
+
     return (
       <div>
-        <TodoList todos={todos} />
+        <TodoList todos={todos}/>
+        <AddTodo onAddTodo={this.handleAddTodo}/>
       </div>
     )
   }
