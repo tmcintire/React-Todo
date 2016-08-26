@@ -25424,6 +25424,10 @@
 
 	var _Addtodo2 = _interopRequireDefault(_Addtodo);
 
+	var _TodoSearch = __webpack_require__(237);
+
+	var _TodoSearch2 = _interopRequireDefault(_TodoSearch);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var React = __webpack_require__(8);
@@ -25435,6 +25439,8 @@
 
 	  getInitialState: function getInitialState() {
 	    return {
+	      showCompleted: false,
+	      searchText: '',
 	      todos: [{
 	        id: 1,
 	        text: 'Walk the dog'
@@ -25453,6 +25459,12 @@
 	  handleAddTodo: function handleAddTodo(text) {
 	    alert('new todo: ' + text);
 	  },
+	  handleSearch: function handleSearch(showCompleted, searchText) {
+	    this.setState({
+	      showCompleted: showCompleted,
+	      searchText: searchText.toLowerCase()
+	    });
+	  },
 	  render: function render() {
 	    var todos = this.state.todos;
 
@@ -25460,6 +25472,7 @@
 	    return React.createElement(
 	      'div',
 	      null,
+	      React.createElement(_TodoSearch2.default, { onSearch: this.handleSearch }),
 	      React.createElement(TodoList, { todos: todos }),
 	      React.createElement(_Addtodo2.default, { onAddTodo: this.handleAddTodo })
 	    );
@@ -25919,6 +25932,53 @@
 			URL.revokeObjectURL(oldSrc);
 	}
 
+
+/***/ },
+/* 237 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var _react = __webpack_require__(8);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var TodoSearch = _react2.default.createClass({
+	  displayName: "TodoSearch",
+
+	  handleSearch: function handleSearch() {
+	    var showCompleted = this.refs.showCompleted.checked;
+	    var searchText = this.refs.searchText.value;
+
+	    this.props.onSearch(showCompleted, searchText);
+	  },
+	  render: function render() {
+
+	    return _react2.default.createElement(
+	      "div",
+	      null,
+	      _react2.default.createElement(
+	        "div",
+	        null,
+	        _react2.default.createElement("input", { type: "search", ref: "searchText", placeholder: "Enter search...", onChange: this.handleSearch })
+	      ),
+	      _react2.default.createElement(
+	        "div",
+	        null,
+	        _react2.default.createElement(
+	          "label",
+	          null,
+	          _react2.default.createElement("input", { type: "checkbox", ref: "showCompleted", onChange: this.handleSearch }),
+	          "Show comleted todos"
+	        )
+	      )
+	    );
+	  }
+	});
+
+	module.exports = TodoSearch;
 
 /***/ }
 /******/ ]);
